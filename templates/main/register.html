@@ -1,0 +1,23 @@
+<html>
+
+<head>
+    <title>
+        Register page
+    </title>
+
+</head>
+
+<body>
+    This is the register page
+
+    <form method="POST" , action="">
+        {% csrf_token %}
+
+        {{form.as_p}}
+
+        <input type="submit" name="Create User">
+    </form>
+
+</body>
+
+</html>

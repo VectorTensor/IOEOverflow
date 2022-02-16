@@ -1,0 +1,189 @@
+<html>
+
+<head>
+  <title>
+    post page particular
+  </title>
+  <style>
+    .questionText {
+      color: white;
+      text-decoration: none;
+      padding: 5px;
+      font-size: 30px;
+    }
+
+    .Text {
+      color: white;
+    }
+
+    body {
+      background-color: #222629;
+    }
+
+    .questionImages {
+      height: 500px;
+      width: 1000px;
+      padding: 5px;
+    }
+
+    .answerImages {
+      height: 500px;
+      width: 1000px;
+      padding: 5px;
+
+    }
+
+    .titleWord {
+      font-size: 50px;
+      color: #86c232;
+      font-family: sans-serif;
+      padding: 5px;
+    }
+
+    .buttons {
+      color: white;
+      background-color: #61892f;
+      height: 40px;
+      width: 100px;
+      font-size: 20px;
+      border-radius: 8px;
+
+    }
+
+    #MainButtons {
+      display: flex;
+
+      flex-direction: row;
+
+    }
+
+    #upvote {
+      flex: 1;
+
+
+    }
+
+    #downvote {
+      flex: 1;
+    }
+
+    #delete {
+      flex: 4;
+    }
+
+    #upvoteText {
+      flex: 1;
+      font-size: 20px;
+    }
+
+    #downvoteText {
+      flex: 1;
+      font-size: 20px;
+
+    }
+
+    #commentbox {
+
+      width: 80%;
+    }
+
+    #commentDate {
+
+      font-size: 15px;
+    }
+
+    #commentText {
+
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="titleWord"> Particular Question</div>
+  <div class="questionText">
+    {{question.text}}
+  </div>
+  <div>
+    <a href='http://127.0.0.1:8000/images/{{question.image}}'> <img
+        src='http://127.0.0.1:8000/images/{{question.image}}' class="questionImages">
+
+    </a>
+  </div>
+  <div class="Text">
+    Answer:
+  </div>
+  <div>
+    <a href='http://127.0.0.1:8000/images/{{question.answer}}'> <img
+        src='http://127.0.0.1:8000/images/{{question.answer}}' class="answerImages">
+    </a>
+  </div>
+  <div id="MainButtons">
+
+
+    {% if request.user.is_authenticated %}
+    <form id="upvote" action='{% url ' upvote' question.id %}' method="post">
+      {% csrf_token %}
+      <input class="buttons" type="submit" name="upvote" value="upvote">
+    </form>
+    {% else %}
+
+    {% endif %}
+    <div class="Text" id="upvoteText">
+      Upvote={{question.upvote}}
+    </div>
+
+    {% if request.user.is_authenticated %}
+    <form id="downvote" action='{% url ' downvote' question.id %}' method="post">
+      {% csrf_token %}
+      <input type="submit" class="buttons" name="downvote" value="downvote">
+
+    </form>
+    {% else %}
+
+    {% endif %}
+    <div class="Text" id="downvoteText">
+      Downvote={{question.downvote}}
+    </div>
+
+
+    {% if request.user.is_authenticated %}
+    <form id="delete" action="{% url 'del'  %}" method="POST">
+      {% csrf_token %}
+      <button class="buttons" type="submit" name="delete" value="{{question.id}}">Delete</button>
+    </form>
+    {% else %}
+
+    {% endif %}
+  </div>
+
+  {% for comment in comments %}
+  <div class="comments" style="padding: 10px;">
+    <p class="font-weight-bold">
+
+      <span class=" text-muted font-weight-normal Text" id="commentDate">
+        {{ comment.created }}
+      </span>
+    </p>
+    <div class="Text" id="commentText">
+      {{ comment.body | linebreaks }}
+    </div>
+  </div>
+  {% endfor %}
+
+  {% if new_comment %}
+  <h2 class="Text">Your comment has been added.</h2>
+  {% else %}
+  <h2 class="Text">Add a new comment</h2>
+  <form method="post">
+    <div class="Text" id="commentbox"> {{ comment_form.body }}
+    </div>
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary  btn-lg buttons"> Comment</button>
+  </form>
+  {% endif %}
+
+
+</body>
+
+</html>
