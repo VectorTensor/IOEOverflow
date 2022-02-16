@@ -1,0 +1,100 @@
+<html>
+
+<head>
+    <title>
+        this is the posts page
+    </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .topnav-section {
+            width: 100%;
+            height: auto;
+            display: flex;
+            background-color: black;
+        }
+
+        .topnav-container {
+            width: 100%;
+            display: flex;
+        }
+
+        .topnav-container>* {
+            flex: 1;
+            text-align: center;
+        }
+
+        .topnav-container a {
+            color: white;
+            padding: 1em;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .active {
+            background-color: #86c232;
+        }
+
+        .topnav-container a:hover {
+            background-color: #61892f;
+        }
+
+        .questionText {
+            color: white;
+            text-decoration: none;
+            padding: 5px;
+            font-size: 30px;
+        }
+
+        body {
+            background-color: #222629;
+        }
+
+        .questionImages {
+            height: 500px;
+            width: 1000px;
+        }
+
+        .titleWord {
+            font-size: 50px;
+            color: #86c232;
+            font-family: sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="topnav-section">
+        <div class="topnav-container">
+            <a href="{% url 'index' %}">Home</a>
+            <a class="active" href="{% url 'posts' %}">Posts</a>
+            <a href="{% url 'search' %}">Search</a>
+            <a href="{% url 'forum' %}">Forum</a>
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'login' %}">Login</a>
+            {% else %}
+            <a href="{% url 'logout' %}">Logout</a>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="titleWord">
+        Posts
+    </div>
+
+
+    {%load post_tags %}
+    {% for question in questions %}
+    <div><a href="{% url 'particularPost' question.id %} " class="questionText">{{question |get_item:'text'}}</a></div>
+    <!-- this first part of the url might have to be  -->
+    <div> <a href='http://127.0.0.1:8000/images/{{question | get_item:' image'}}'> <img
+                src='http://127.0.0.1:8000/images/{{question | get_item:' image'}}' class="questionImages"></a></div>
+
+    {%endfor%}
+</body>
+
+</html>
