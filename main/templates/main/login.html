@@ -1,17 +1,72 @@
 <html>
-    <head>
-        <title>
-            Login
-        </title>
-    </head>
-    <body>
-        This is Login page
-        <form method="POST", action="">
-            {% csrf_token %}
-            Username:<input type="text" name="username"> <br>
-            Password:<input type="password" name="password">
-            <input type=submit name="dataSubmit">
 
-        </form>
-    </body>
+<head>
+    <title>
+        Login
+    </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .topnav-section {
+            width: 100%;
+            height: auto;
+            display: flex;
+            background-color: black;
+        }
+
+        .topnav-container {
+            width: 100%;
+            display: flex;
+        }
+
+        .topnav-container>* {
+            flex: 1;
+            text-align: center;
+        }
+
+        .topnav-container a {
+            color: white;
+            padding: 1em;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .active {
+            background-color: #86c232;
+        }
+
+        .topnav-container a:hover {
+            background-color: #61892f;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="topnav-section">
+        <div class="topnav-container">
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'posts' %}">Posts</a>
+            <a href="{% url 'search' %}">Search</a>
+            <a href="{% url 'forum' %}">Forum</a>
+            {% if request.user.is_authenticated %}
+           <a href="{% url 'logout' %}">Logout</a>
+                  {{request.user}}
+            {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+    </nav>
+    This is Login page
+    <form method="POST" , action="">
+        {% csrf_token %}
+        Username:<input type="text" name="username"> <br>
+        Password:<input type="password" name="password">
+        <input type=submit name="dataSubmit">
+
+    </form>
+</body>
+
 </html>
