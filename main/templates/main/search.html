@@ -70,6 +70,15 @@
             background-color: #222629;
             color: white;
         }
+        .buttons {
+      color: white;
+      background-color: #61892f;
+      height: 40px;
+      width: 100px;
+      font-size: 20px;
+      border-radius: 8px;
+
+    }
     </style>
 </head>
 
@@ -95,7 +104,7 @@
         {%csrf_token%}
         <div class="search">
             {{search}}
-            <input type="submit">
+            <input class="buttons" type="submit">
             {%load post_tags %}
         </div>
         <div class="content">
