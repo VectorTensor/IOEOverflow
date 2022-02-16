@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    <title>{% block title%}{% endblock %}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .topnav-section {
+            width: 100%;
+            height: auto;
+            display: flex;
+            background-color: black;
+        }
+
+        .topnav-container {
+            width: 100%;
+            display: flex;
+        }
+
+        .topnav-container>* {
+            flex: 1;
+            text-align: center;
+        }
+
+        .topnav-container a {
+            color: white;
+            padding: 1em;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .active {
+            background-color: #86c232;
+        }
+
+        .topnav-container a:hover {
+            background-color: #61892f;
+        }
+
+        .title {
+            padding: 1em;
+            text-align: center;
+            color: #86c232;
+            font-family: sans-serif;
+        }
+
+        .typewriter h3 {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            padding: 0 0 1em 0;
+            overflow: hidden;
+            /* Ensures the content is not revealed until the animation */
+            white-space: nowrap;
+            /* Keeps the content on a single line */
+            margin: 0 auto;
+            /* Gives that scrolling effect as the typing happens */
+            letter-spacing: .15em;
+            /* Adjust as needed */
+            animation:
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        /* The typing effect */
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        .content {
+            text-align: center;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        body {
+            background-color: #222629;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="topnav-section">
+        <div class="topnav-container">
+            <a class="active" href="{% url 'index' %}">Home</a>
+            <a href="{% url 'posts' %}">Posts</a>
+            <a href="{% url 'search' %}">Search</a>
+            <a href="{% url 'forum' %}">Forum</a>
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'login' %}">Login</a>
+            {% else %}
+            <a href="{% url 'logout' %}">Logout</a>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="title">
+        <h1>IOEOVERFLOW</h1>
+    </div>
+    <div class="typewriter">
+        <h3>A peer reviewed question answer site for IOE engineering students.</h3>
+    </div>
+    <div class="content">
+        {% block content %}
+        <p>
+            The title of our project is IOE Overflow. The aim of this project is to create a platform to share the
+            answers of questions that you have practiced. Then it will be reviewed by other members. The main purpose of
+            this system is to make the question answer flow between students easier. For this a solution is to construct
+            a student website where students can enter their doubts and it can be answered by other students. The
+            answers can then be reviewed by other students and the number of ratings helps to validate the given answer.
+            We will be using frameworks for ease of access. Login can be made based on the student ID, which can further
+            validate the reliability of the project. The answers given by the users can also be saved in their login
+            module. The credibility of the user is also given by the number of good ratings that they get from their
+            answers.
+        </p>
+        {% endblock %}
+    </div>
+</body>
+
+</html>
