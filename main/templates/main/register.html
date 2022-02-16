@@ -4,20 +4,70 @@
     <title>
         Register page
     </title>
+<style>
+            .text{
+                color:#86C232;
+                align:left;
+                font-size:20px;
+            }
+            
+            form {
+               
+                padding: 10px; 
+              }
+              input[type=text], input[type=password] {
+                width: 20%;
+                padding: 10px;
+                margin: 1px 0 8px 0;
+                display: inline-block;
+                border: none;
+                background: white;
+                }
+              body{
+                background-color:#222629;
+            }
+           h1{
+               color:#61892F;
+           }
+           div{
+               background-color:#222629;
+           }
+           .container { 
+                padding: 5px;     
+              }
+              .fieldwrapper{
+                border: 5px solid #86C232;
+                  width: 75%;
+                  margin: 0 auto;
 
+              }
+                      .buttons {
+      color: white;
+      background-color: #61892f;
+      height: 40px;
+      width: 100px;
+      font-size: 20px;
+      border-radius: 8px;
+
+        </style>
 </head>
 
 <body>
-    This is the register page
-
-    <form method="POST" , action="">
-        {% csrf_token %}
-
-        {{form.as_p}}
-
-        <input type="submit" name="Create User">
-    </form>
-
+    <form action="{% url 'login' %}" method="GET" >
+    <button class="buttons">Login</button>
+</form>
+    <center><h1>Register page</h1></center>
+<div class="fieldWrapper">
+<div class="container">
+<form method="POST", action="">
+    {% csrf_token %}
+    <div class="text" > {{form.as_p}}
+<input class="buttons" type="submit" name="Create User">
+    </div>
+</div>
+<div id="first">
+</div>
+</form>
 </body>
 
 </html>
