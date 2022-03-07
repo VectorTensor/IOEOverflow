@@ -56,8 +56,8 @@
         }
 
         .questionImages {
-            height: 500px;
-            width: 1000px;
+            height: auto;
+            width: auto;
         }
 
         .titleWord {
@@ -97,7 +97,7 @@
     {% for question in questions %}
     <div><a href="{% url 'particularPost' question.id %} " class="questionText">{{question |get_item:'text'}}</a></div>
     <!-- this first part of the url might have to be  -->
-    <div> <a href='http://127.0.0.1:8000/images/{{question | get_item:'image'}}'> <img
+    <div> <a href='http://127.0.0.1:8000/images/{{question | get_item:'image'}}' target="_blank" > <img
                 src='http://127.0.0.1:8000/images/{{question | get_item:'image'}}' class="questionImages"></a></div>
 
     {%endfor%}

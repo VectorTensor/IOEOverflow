@@ -148,8 +148,11 @@ def forum(request):
         filename = Question.objects.filter(id=number_of_items).values()
        # print("check")
         # if you don't use linux you need to add different format of the path below
-
-        image = os.path.join('/mnt/c/Users/Dell/desktop/IOEOverflow/images',
+## Prayash Laptop
+     #   image = os.path.join('/mnt/c/Users/Dell/desktop/IOEOverflow/images',
+        #                     filename[0]['image'])  # add the iamges path of your pc
+    ## Prayash desktop
+        image = os.path.join('/mnt/c/Users/User/desktop/IOEOverflow/images',
                              filename[0]['image'])  # add the iamges path of your pc
        # print(image)
         imageocr = ocrcomp(image)
@@ -303,6 +306,7 @@ def getID_ElasticSearch(text):
 
                 "query": text,
                 "fields": ["text", "image"],
+               
                 "fuzziness": "AUTO"
 
 
