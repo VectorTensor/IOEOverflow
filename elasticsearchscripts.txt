@@ -18,7 +18,7 @@ PUT question
                 "filter": {
                     "C-moon_n-gram_filter":{
                               "type":"edge_ngram",
-                                        "min_gram":3,
+                                        "min_gram":2,
                                                   "max_gram":15
                                                           
                     }
