@@ -1,7 +1,7 @@
 
 -> For creating the index
 
-PUT <index_name> 
+PUT question
 {
     "settings": {
         "analysis": {
@@ -27,8 +27,26 @@ PUT <index_name>
                     
         }
           
+          
+    }  ,
+    "mappings": {
+    "properties": {
+       
+      "text":   { "type": "text",
+      "analyzer": "dark_k-fold_axon_analyzer"
+        
+        
+      } ,
+      "image":{
+        "type":"text",
+        "analyzer": "dark_k-fold_axon_analyzer"
+      
+        
+      }
     }
-
+  }
+          
+          
 }
 
 -> For searching
