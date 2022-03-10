@@ -149,11 +149,12 @@ def forum(request):
        # print("check")
         # if you don't use linux you need to add different format of the path below
 ## Prayash Laptop
-        image = os.path.join('/mnt/c/Users/Dell/desktop/IOEOverflow/images',
-                           filename[0]['image'])  # add the iamges path of your pc
+        #image = os.path.join('/mnt/c/Users/Dell/desktop/IOEOverflow/images',
+         #                  filename[0]['image'])  # add the iamges path of your pc
     ## Prayash desktop
-     #   image = os.path.join('/mnt/c/Users/User/desktop/IOEOverflow/images',
-      #                       filename[0]['image'])  # add the iamges path of your pc
+        image = os.path.join('/mnt/c/Users/User/desktop/IOEOverflow/images',
+                            filename[0]['image'])  # add the iamges path of your pc
+
        # print(image)
         imageocr = ocrcomp(image)
         update_els_server(number_of_items, text, imageocr)
