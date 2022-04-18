@@ -42,47 +42,67 @@
         .topnav-container a:hover {
             background-color: #61892f;
         }
+
         form {
-               
-                padding: 10px;
-                text-align:center;
-                
-              }
-               body {font-family: Arial, Helvetica, sans-serif;}
-                body{
-                background-color:#222629;
-                
-            }
-            #Loginfield{
-                padding: 10% 0;
-            }
-             h1{
-                color:#61892F;
-                font-weight:normal;
-                margin-bottom:0.1em;
-            }
-            h2{
-                color:white;
-            }
-            .container {
-                padding: 5px;
-                
-              }
-              .fieldwrapper{
-                border: 5px solid #86C232;
-                  width: 40%;
-                  margin: 0 auto;
 
-              }
-               .buttons {
-      color: white;
-      background-color: #61892f;
-      height: 40px;
-      width: 100px;
-      font-size: 20px;
-      border-radius: 8px;
+            padding: 10px;
+            text-align: center;
 
-    }
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #222629;
+
+        }
+
+        h1 {
+            color: #61892F;
+            font-weight: normal;
+            margin-bottom: 0.1em;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        .container {
+            padding: 1em;
+
+        }
+
+        .fieldwrapper {
+            border: 5px solid #86C232;
+            width: 40%;
+            margin: 0 auto;
+
+        }
+
+        .buttons {
+            color: white;
+            background-color: #61892f;
+            height: 40px;
+            width: 100px;
+            font-size: 20px;
+            border-radius: 8px;
+
+        }
+
+        .RegisterDirect {
+            padding: 1em;
+        }
+
+        .RegisterDirect a {
+            color: white;
+            text-decoration: none;
+        }
+
+        h1 {
+            padding: 1em;
+        }
     </style>
 </head>
 
@@ -93,31 +113,28 @@
             <a href="{% url 'posts' %}">Posts</a>
             <a href="{% url 'search' %}">Search</a>
             <a href="{% url 'forum' %}">Forum</a>
-            {% if request.user.is_authenticated %}
-           <a class="active" href="{% url 'logout' %}">Logout</a>
-                  {{request.user}}
-            {% else %}
             <a class="active" href="{% url 'login' %}">Login</a>
-            {% endif %}
     </nav>
-    <form action="{% url 'register' %} ">
-    <button class="buttons">Register</button>
-</form>
-  <div id="Loginfield"> <center><h1>Login Page</h1></center>
-       <div class="fieldWrapper">
-        <form method="POST", action="">
-            {% csrf_token %}
-            <div class="container">
-            <h2>
-            Username:<input type="text" name="username"> <br>
-            Password:<input type="password" name="password"></h1>
-            </div>
-        <input class=buttons type=submit name="dataSubmit">
-       
+    <div id="Loginfield">
+        <center>
+            <h1>Login Page</h1>
+        </center>
+        <div class="fieldWrapper">
+            <form method="POST" , action="">
+                {% csrf_token %}
+                <div class="container">
+                    <h2>
+                        Username: <input type="text" name="username"><br>
+                        Password: <input type="password" name="password"></h1>
+                </div>
+                <input class=buttons type=submit name="dataSubmit">
+                <div class="RegisterDirect">
+                    <center><a href="{% url 'register' %}">Don't have an account yet?</a></center>
+                </div>
+            </form>
+        </div>
         </form>
     </div>
-    </form>
-</div>
 </body>
 
 </html>

@@ -2,72 +2,171 @@
 
 <head>
     <title>
-        Register page
+        Register
     </title>
-<style>
-            .text{
-                color:#86C232;
-                align:left;
-                font-size:20px;
-            }
-            
-            form {
-               
-                padding: 10px; 
-              }
-              input[type=text], input[type=password] {
-                width: 20%;
-                padding: 10px;
-                margin: 1px 0 8px 0;
-                display: inline-block;
-                border: none;
-                background: white;
-                }
-              body{
-                background-color:#222629;
-            }
-           h1{
-               color:#61892F;
-           }
-           div{
-               background-color:#222629;
-           }
-           .container { 
-                padding: 5px;     
-              }
-              .fieldwrapper{
-                border: 5px solid #86C232;
-                  width: 75%;
-                  margin: 0 auto;
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-              }
-                      .buttons {
-      color: white;
-      background-color: #61892f;
-      height: 40px;
-      width: 100px;
-      font-size: 20px;
-      border-radius: 8px;
+        .topnav-section {
+            width: 100%;
+            height: auto;
+            display: flex;
+            background-color: black;
+        }
 
-        </style>
+        .topnav-container {
+            width: 100%;
+            display: flex;
+        }
+
+        .topnav-container>* {
+            flex: 1;
+            text-align: center;
+        }
+
+        .topnav-container a {
+            color: white;
+            padding: 1em;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .active {
+            background-color: #86c232;
+        }
+
+        .topnav-container a:hover {
+            background-color: #61892f;
+        }
+
+        .questionText {
+            color: white;
+            text-decoration: none;
+            padding: 5px;
+            font-size: 30px;
+        }
+
+        body {
+            background-color: #222629;
+            color: white;
+        }
+
+        .questionImages {
+            height: auto;
+            width: auto;
+        }
+
+        .titleWord {
+            font-size: 50px;
+            color: #86c232;
+            font-family: sans-serif;
+        }
+
+        .text {
+            color: #86C232;
+            align: left;
+            font-size: 20px;
+        }
+
+        form {
+
+            padding: 10px;
+        }
+
+        input[type=text],
+        input[type=password] {
+            width: 20%;
+            padding: 10px;
+            margin: 1px 0 8px 0;
+            display: inline-block;
+            border: none;
+            background: white;
+        }
+
+        body {
+            background-color: #222629;
+        }
+
+        h1 {
+            color: #61892F;
+        }
+
+        div {
+            background-color: #222629;
+        }
+
+        .container {
+            padding: 5px;
+        }
+
+        .fieldwrapper {
+            border: 5px solid #86C232;
+            width: 75%;
+            margin: 0 auto;
+
+        }
+
+        .buttons {
+            color: white;
+            background-color: #61892f;
+            height: 40px;
+            width: 100px;
+            font-size: 20px;
+            border-radius: 8px;
+        }
+
+        .LoginDirect {
+            padding: 1em;
+        }
+
+        .LoginDirect a {
+            color: white;
+            text-decoration: none;
+        }
+
+        h1 {
+            padding: 1em;
+            text-align: center;
+            color: #86c232;
+            font-family: sans-serif;
+        }
+    </style>
 </head>
 
 <body>
-    <form action="{% url 'login' %}" method="GET" >
-    <button class="buttons">Login</button>
-</form>
-    <center><h1>Register page</h1></center>
-<div class="fieldWrapper">
-<div class="container">
-<form method="POST", action="">
-    {% csrf_token %}
-    <div class="text" > {{form.as_p}}
-<input class="buttons" type="submit" name="Create User">
-    </div>
-</div>
-<div id="first">
-</div>
-</form>
+    <nav class="topnav-section">
+        <div class="topnav-container">
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'posts' %}">Posts</a>
+            <a href="{% url 'search' %}">Search</a>
+            <a href="{% url 'forum' %}">Forum</a>
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+            {{request.user}}
+            {% else %}
+            <a class="active" href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+    <center>
+        <h1>Register page</h1>
+    </center>
+    <div class="fieldWrapper">
+        <div class="container">
+            <form method="POST" , action="">
+                {% csrf_token %}
+                <div class="text"> {{form.as_p}}
+                    <input class="buttons" type="submit" name="Create User">
+                </div>
+        </div>
+        <div class="LoginDirect">
+            <center><a href="{% url 'login' %}">Already have an account?</a></center>
+        </div>
+        </form>
 </body>
 
 </html>

@@ -2,46 +2,47 @@
 
 <head>
   <title>
-    post page particular
+    Particular Post
   </title>
   <style>
     * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .topnav-section {
-            width: 100%;
-            height: auto;
-            display: flex;
-            background-color: black;
-        }
+    .topnav-section {
+      width: 100%;
+      height: auto;
+      display: flex;
+      background-color: black;
+    }
 
-        .topnav-container {
-            width: 100%;
-            display: flex;
-        }
+    .topnav-container {
+      width: 100%;
+      display: flex;
+    }
 
-        .topnav-container>* {
-            flex: 1;
-            text-align: center;
-        }
+    .topnav-container>* {
+      flex: 1;
+      text-align: center;
+    }
 
-        .topnav-container a {
-            color: white;
-            padding: 1em;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
+    .topnav-container a {
+      color: white;
+      padding: 1em;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
 
-        .active {
-            background-color: #86c232;
-        }
+    .active {
+      background-color: #86c232;
+    }
 
-        .topnav-container a:hover {
-            background-color: #61892f;
-        }
+    .topnav-container a:hover {
+      background-color: #61892f;
+    }
+
     .questionText {
       color: white;
       text-decoration: none;
@@ -70,11 +71,12 @@
 
     }
 
-    .titleWord {
-      font-size: 50px;
+    .title {
+      padding: 1em;
+      text-align: center;
+      margin: 0 auto;
       color: #86c232;
       font-family: sans-serif;
-      padding: 5px;
     }
 
     .buttons {
@@ -133,49 +135,77 @@
 
       font-size: 20px;
     }
+
+    .user {
+      height: auto;
+      text-align: center;
+      flex: 1;
+      margin: auto;
+    }
+
+    .body_up {
+      text-align: center;
+    }
+
+    .body_down {
+      text-align: left;
+      margin: auto;
+      width: 70%;
+    }
+
+    .comment_add {
+      margin: auto;
+      width: 90%;
+      text-align: center;
+    }
   </style>
 </head>
 
 <body>
   <nav class="topnav-section">
-        <div class="topnav-container">
-            <a href="{% url 'index' %}">Home</a>
-            <a class="active" href="{% url 'posts' %}">Posts</a>
-            <a href="{% url 'search' %}">Search</a>
-            <a href="{% url 'forum' %}">Forum</a>
-            {% if request.user.is_authenticated %}
-            <a href="{% url 'logout' %}">Logout</a>
-                   {{request.user}}
-            {% else %}
-            <a href="{% url 'login' %}">Login</a>
-            {% endif %}
-        </div>
-    </nav>
-  <div class="titleWord"> Particular Question</div>
-  <div class="questionText">
-    {{question.text}}
-  </div>
-  <div>
-    <a href='http://127.0.0.1:8000/images/{{question.image}}'> <img
-        src='http://127.0.0.1:8000/images/{{question.image}}' class="questionImages">
+    <div class="topnav-container">
+      <a href="{% url 'index' %}">Home</a>
+      <a class="active" href="{% url 'posts' %}">Posts</a>
+      <a href="{% url 'search' %}">Search</a>
+      <a href="{% url 'forum' %}">Forum</a>
+      {% if request.user.is_authenticated %}
+      <a href="{% url 'logout' %}">Logout</a>
+      <div class="user">{{request.user}}</div>
+      {% else %}
+      <a href="{% url 'login' %}">Login</a>
+      {% endif %}
+    </div>
+  </nav>
+  <div class="body_up">
+    <div class="Title">
+      <h1>PARTICULAR QUESTION</h1>
+    </div>
+    <div class="questionText">
+      {{question.text}}
+    </div>
+    <div>
+      <a href='http://127.0.0.1:8000/images/{{question.image}}'> <img
+          src='http://127.0.0.1:8000/images/{{question.image}}' class="questionImages">
 
-    </a>
-  </div>
-  <div class="Text">
-    Answer:
-  </div>
-  <div>
-    <a href='http://127.0.0.1:8000/images/{{question.answer}}'> <img
-        src='http://127.0.0.1:8000/images/{{question.answer}}' class="answerImages">
-    </a>
-  </div>
-  <div id="MainButtons">
+      </a>
+    </div>
+    <div class="Text">
+      Answer:
+    </div>
+    <div>
+      <a href='http://127.0.0.1:8000/images/{{question.answer}}'> <img
+          src='http://127.0.0.1:8000/images/{{question.answer}}' class="answerImages">
+      </a>
+    </div>
+    <div id="MainButtons">
 
 
-    {% if request.user.is_authenticated %}
-    <form id="upvote" action='{% url 'upvote' question.id %}' method="post">
-      {% csrf_token %}
-      <input class="buttons" type="submit" name="upvote" value="upvote">
+      {% if request.user.is_authenticated %}
+      <form id="upvote" action='{% url ' upvote' question.id %}' method="post">
+    </div>
+
+    {% csrf_token %}
+    <input class="buttons" type="submit" name="upvote" value="upvote">
     </form>
     {% else %}
 
@@ -185,7 +215,7 @@
     </div>
 
     {% if request.user.is_authenticated %}
-    <form id="downvote" action='{% url 'downvote' question.id %}' method="post">
+    <form id="downvote" action='{% url ' downvote' question.id %}' method="post">
       {% csrf_token %}
       <input type="submit" class="buttons" name="downvote" value="downvote">
 
@@ -196,8 +226,9 @@
     <div class="Text" id="downvoteText">
       Downvote={{question.downvote}}
     </div>
+  </div>
 
-
+  <div class="body_down">
     {% if request.user.is_authenticated %}
     <form id="delete" action="{% url 'del'  %}" method="POST">
       {% csrf_token %}
@@ -206,35 +237,33 @@
     {% else %}
 
     {% endif %}
-  </div>
+    {% for comment in comments %}
+    <div class="comments" style="padding: 10px;">
+      <p class="font-weight-bold">
 
-  {% for comment in comments %}
-  <div class="comments" style="padding: 10px;">
-    <p class="font-weight-bold">
-
-      <span class=" text-muted font-weight-normal Text" id="commentDate">
-        {{ comment.created }}
-      </span>
-    </p>
-    <div class="Text" id="commentText">
-      {{ comment.body | linebreaks }}
+        <span class=" text-muted font-weight-normal Text" id="commentDate">
+          {{ comment.created }}
+        </span>
+      </p>
+      <div class="Text" id="commentText">
+        {{ comment.body | linebreaks }}
+      </div>
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
-
-  {% if new_comment %}
-  <h2 class="Text">Your comment has been added.</h2>
-  {% else %}
-  <h2 class="Text">Add a new comment</h2>
-  <form method="post">
-    <div class="Text" id="commentbox"> {{ comment_form.body }}
-    </div>
-    {% csrf_token %}
-    <button type="submit" class="btn btn-primary  btn-lg buttons"> Comment</button>
-  </form>
-  {% endif %}
-
-
+  <div class="comment_add">
+    {% if new_comment %}
+    <h2 class="Text">Your comment has been added.</h2>
+    {% else %}
+    <h2 class="Text">Add a new comment</h2>
+    <form method="post">
+      <div class="Text" id="commentbox"> {{ comment_form.body }}
+      </div>
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary  btn-lg buttons"> Comment</button>
+    </form>
+    {% endif %}
+  </div>
 </body>
 
 </html>
